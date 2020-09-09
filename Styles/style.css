@@ -1,0 +1,68 @@
+
+/*nav*/
+
+ul {
+  align-content: center;
+  text-align: center;
+  background-color: darkslategray;
+  padding: 10px;
+  
+
+
+}
+
+li {
+  display: inline;
+  padding: 1%;
+
+}
+
+/*heading*/
+
+h1 {
+ text-align: center;
+margin: auto;
+padding: 2%;
+font-family: fantasy;
+font-size: x-large;
+text-shadow: 1px 1px darkslategray,
+2px 2px darkturquoise,
+4px 4px grey;
+
+}
+
+
+/*body*/
+
+.information {
+  display: inline-block;
+  position: fixed;
+  border-style: dashed;
+  border-width: thin;
+}
+
+body {
+  background-image: url(../img/wilderness2.jpeg);
+  background-position: center;
+  background-color: rgb(30, 155, 30);
+
+}
+
+
+
+/*form*/
+label[for=name] {
+display: block;
+}
+
+
+/*footer*/
+
+footer {
+  font-family: fantasy;
+
+}
+
+
+
+
