@@ -8,15 +8,15 @@
   <title>Adventure</title>
 </head>
 <body onload='renderSurv();'>
-  <header><nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul></nav>
-  </header>
   <main>
+    <header><nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul></nav>
+    </header>
     <div id="conent-container">
-      <canvas id ="myChart"></canvas>
+      <canvas id ="myChart" height="30px"></canvas>
       <div id="mainImgCont">
         <h2 id='sceneTxt'></h2>
         <img src="" alt="" id='scenarioImg'>
@@ -27,12 +27,11 @@
         <img src="" alt="" id="choiceTwo">
       </div>
       <div id="results">
-
       </div>
 
     </div>
+    <footer><p> &copy CF2G</p></footer>
   </main>
-  <footer><p> &copy CF2G</p></footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
   <script src="JS/app.js"></script>
 </body>
