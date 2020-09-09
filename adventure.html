@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="Styles/style.css">
   <title>Adventure</title>
 </head>
-<body>
+<body onload='renderSurv();'>
   <header><nav>
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -15,21 +15,25 @@
     </ul></nav>
   </header>
   <main>
-    <div class="conent-container">
-      <div class="mainImgCont">
+    <div id="conent-container">
+      <canvas id ="myChart"></canvas>
+      <div id="mainImgCont">
+        <h2 id='sceneTxt'></h2>
         <img src="" alt="" id='scenarioImg'>
       </div>
-      <div class="choiceCont">
-        <img src="" alt="" id="choice1">
-        <img src="" alt="" id="choice2">
+      <div id="choiceCont">
+
+        <img src="" alt="" id="choiceOne">
+        <img src="" alt="" id="choiceTwo">
       </div>
-      <div class="results">
+      <div id="results">
 
       </div>
 
     </div>
   </main>
   <footer><p> &copy CF2G</p></footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
   <script src="JS/app.js"></script>
 </body>
 </html>
