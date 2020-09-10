@@ -82,6 +82,7 @@ function renderHealth() {
     data: {
       labels: ['Health'],
       datasets: [{
+        barThickness:30,
         label: 'Health Remaining',
         data: [survivorArray[0].healthCounter],
         backgroundColor: [
