@@ -78,14 +78,63 @@ div#choiceCont {
   margin-left:10px;
 }
 
-div#choiceCont img:nth-child(2){
-margin-left:10px
+/* Card Flipping */
+.scene {
+  perspective:0px;
+}
+.card {
+  position:relative;
+  cursor:pointer;
+  transform-style: preserve-3d;
+  transform-origin: center right;
+  transition: transform 1s;
+}
+.card.is-flipped {
+  transform:translateX(-153%) rotateY(-180deg);
+}
 
+.card__face {
+  backface-visibility: hidden;
+}
+
+.card__face--back {
+  transform:rotateY(180deg);
+}
+
+/*  card two */
+
+.sceneTwo {
+  perspective:0px;
+}
+.cardTwo {
+  position:relative;
+  cursor:pointer;
+  transform-style: preserve-3d;
+  transform-origin: center right;
+  transition: transform 1s;
+}
+.cardTwo.is-flipped {
+  transform:translateX(-153%) rotateY(-180deg);
+}
+
+.cardTwo__face {
+  backface-visibility: hidden;
+}
+
+.cardTwo__face--back {
+  transform:rotateY(180deg);
 }
 
 
 
 
+
+
+
+div#choiceCont img:nth-child(2){
+margin-left:10px
+
+}
 
 /*form*/
 fieldset {

@@ -1,11 +1,12 @@
 'use strict';
 
 
+
 // globals
 var survivorArray = [];
 var scenarioArray = [];
 var scenarioOne = [
-  ['./img/bear.jpg', 'A vicious Bear', 'A Wild Bear approaches', './img/runCard.png', './img/stayCard.png', 'something happens', 'something else happened'],
+  ['./img/alone.jpeg', 'spooky picture', 'You wake up alone, a fox is trying to swipe your supplies you must choose one', './img/jacketcard.png', './img/flintCard.png', 'You quickly take the jacket and the fox runs away with the flint', 'You quickly take the flint as the fox ripps the jackets to shreds'],
   ['./img/cold.jpeg', 'A cold place', 'A biting cold overcomes you', './img/runCard.png', './img/stayCard.png', 'something happens', 'something else happened'],
   ['./img/wilderness.jpg', 'Wilderness', 'Famine is you problem', './img/runCard.png', './img/stayCard.png', 'something happens', 'something else happened'],
   ['./img/fire.jpg', 'a ragingfire', ' a raging wildfire surrounds you', './img/runCard.png', './img/stayCard.png', 'something happens', 'something else happened'],
@@ -74,8 +75,23 @@ userForm.addEventListener('submit', handleUser);
 //Scenario Functions
 
 function renderSurv() {
+  //globals for adventure html
   var healthDis = document.getElementById('content-containter');
   var survivor = localStorage.getItem('survivor');
+
+  // card flipp
+  var card = document.querySelector('.card');
+  card.addEventListener('click',
+    function () {
+      card.classList.toggle('is-flipped');
+    });
+
+  var secondCard = document.querySelector('.cardTwo');
+  secondCard.addEventListener('click',
+    function () {
+      secondCard.classList.toggle('is-flipped');
+    });
+
   survivorArray = JSON.parse(survivor);
   console.log('check');
   renderHealth();
@@ -89,16 +105,23 @@ function renderSurv() {
     var resultCont = document.getElementById('results');
     if (event.target.alt === 'badChoice') {
       var resultTxt = document.createElement('p');
-      resultTxt.textContent = scenarioOne[survivorArray[0].checkpointCounter][5];
+      resultTxt.textContent = scenarioOne[survivorArray[0].checkpointCounter][5]; //Result txt
       resultCont.append(resultTxt);
-      survivorArray[0].healthCounter--;
+      //For item choice
+      if (scenarioOne[survivorArray[0].checkpointCounter] === 0) {
+        console.log('choice');
+      } else {
+        survivorArray[0].healthCounter--;
+      }
       choices.removeEventListener('click', choiceHandler);
     } else if (event.target.alt === 'goodChoice') {
       var resultTxt = document.createElement('p');
-      resultTxt.textContent = scenarioOne[survivorArray[0].checkpointCounter][6];
+      resultTxt.textContent = scenarioOne[survivorArray[0].checkpointCounter][6]; //Result TXT
       resultCont.append(resultTxt);
       choices.removeEventListener('click', choiceHandler);
-    }
+    } 
+
+
 
     //End screen logic
 
@@ -111,6 +134,7 @@ function renderSurv() {
     function continueHandle(event) {
       survivorArray[0].checkpointCounter += 1;
       continueBtn.textContent = '';
+      choiceCard();
       popScen();
       renderHealth();
       choices.addEventListener('click', choiceHandler);
@@ -191,6 +215,15 @@ function choiceCard() {
   console.log(randCardTwo, randCardOne);
   var choiceOne = document.getElementById('choiceOne');
   var choiceTwo = document.getElementById('choiceTwo');
+  var choiceOneBack = document.getElementById('choiceOneBack');
+  var choiceTwoBack = document.getElementById('choiceTwoBack');
+
+  //Assigning card back paths
+  choiceOneBack.src = './img/GoodCard.png';
+  choiceTwoBack.src = './img/BadCard.png';
+  //Card back alt test
+  choiceOneBack.alt = 'A card with green text on it,';
+  choiceTwoBack.alt = 'A card with red text on it,';
 
   choiceOne.src = scenarioOne[survivorArray[0].checkpointCounter][randCardOne];
   choiceTwo.src = scenarioOne[survivorArray[0].checkpointCounter][randCardTwo];
@@ -203,6 +236,8 @@ function choiceCard() {
     choiceTwo.alt = 'goodChoice';
   }
 }
+
+
 
 
 
