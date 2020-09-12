@@ -25,9 +25,7 @@ function renderSurv() {
 
     //Assigning item to survivor
     itemChoice();
-    if(survivorArray[0].item === 'flint'){
-      currentScene = scenarioFlint;
-    }
+
 
     var resultTxt = document.createElement('p');
 
@@ -53,14 +51,27 @@ function renderSurv() {
         foxCard();
         resultTxt.setAttribute('class', 'neutral');
       } else {
-        console.log('flint');
         var resultTxt = document.createElement('p');
         resultTxt.setAttribute('class', 'good');
       }
+
       resultTxt.textContent = currentScene[survivorArray[0].checkpointCounter][6];
+      if (survivorArray[0].checkpointCounter === 1 && survivorArray[0].item === 'flint') {
+        currentScene = flintThrow;
+        survivorArray[0].item = '';
+      }
+
+      if (survivorArray[0].checkpointCounter === 2 && survivorArray[0].item === 'jacket') {
+        currentScene = jacketFight;
+      }
+
       survivorArray[0].checkpointCounter += 1; //Result TXT
       resultCont.append(resultTxt);
       choices.removeEventListener('click', choiceHandler);
+    }
+
+    if (survivorArray[0].item === 'flint') {
+      currentScene = scenarioFlint;
     }
 
     var serializedSurv = JSON.stringify(survivorArray);
@@ -74,11 +85,11 @@ function renderSurv() {
     resultCont.append(continueBtn);
 
     // Continue button Event handler
-   
+
     function continueHandle(event) {
       continueBtn.textContent = '';
-      choiceCard();
       popScen();
+      choiceCard();
       renderHealth();
       console.log(resultCont.childNodes);
       resultCont.removeChild(resultCont.childNodes[btnReset]);
@@ -92,7 +103,6 @@ function renderSurv() {
 
 
   choices.addEventListener('click', choiceHandler);
-
 }
 renderSurv();
 
@@ -173,8 +183,20 @@ function choiceCard() {
   //Card back alt test
   choiceOneBack.alt = 'A card with green text on it,';
   choiceTwoBack.alt = 'A card with red text on it,';
+  if (survivorArray[0].healthCounter === 0) {
+    choiceOne.src = endScreens[1][3];
+    choiceOne.alt = ' Try again card';
 
-  if (rand === 4) {
+    choiceTwo.src = endScreens[1][4];
+    choiceTwo.alt = 'About the dev team card';
+  } else if (survivorArray[0].checkpointCounter === 4) {
+    choiceOne.src = endScreens[0][3];
+    choiceOne.alt = ' Try again card';
+
+    choiceTwo.src = endScreens[0][4];
+    choiceTwo.alt = 'About the dev team card';
+  }
+  else if (rand === 4) {
     choiceOne.src = currentScene[survivorArray[0].checkpointCounter][rand];
     choiceTwo.src = currentScene[survivorArray[0].checkpointCounter][rand - 1];
 
@@ -215,12 +237,20 @@ function cardReset() {
 
 function oneflip(event) {
   card.classList.toggle('is-flipped');
+
+  if (event.target.alt === ' Try again card') {
+    window.open('index.html', 'self');
+  }
+
   card.removeEventListener('click', oneflip);
   secondCard.removeEventListener('click', twoFlip);
 }
 
 function twoFlip(event) {
   secondCard.classList.toggle('is-flipped');
+  if (event.target.alt === 'About the dev team card') {
+    window.open('about.html', 'self');
+  }
   card.removeEventListener('click', oneflip);
   secondCard.removeEventListener('click', twoFlip);
 }
