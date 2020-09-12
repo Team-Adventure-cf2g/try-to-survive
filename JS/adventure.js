@@ -2,6 +2,9 @@
 var card = document.querySelector('.card');
 var secondCard = document.querySelector('.cardTwo');
 
+//btn reset for card choice line 79+//
+var btnReset = 4;
+
 
 function renderSurv() {
   var healthDis = document.getElementById('content-containter');
@@ -22,10 +25,14 @@ function renderSurv() {
 
     //Assigning item to survivor
     itemChoice();
+    if(survivorArray[0].item === 'flint'){
+      currentScene = scenarioFlint;
+    }
+
     var resultTxt = document.createElement('p');
 
     if (event.target.alt === 'badChoice') {
-      resultTxt.textContent = scenarioOne[survivorArray[0].checkpointCounter][5]; //Result txt
+      resultTxt.textContent = currentScene[survivorArray[0].checkpointCounter][5]; //Result txt
       resultCont.append(resultTxt);
       //For item choice
       if (survivorArray[0].checkpointCounter === 0) {
@@ -50,7 +57,7 @@ function renderSurv() {
         var resultTxt = document.createElement('p');
         resultTxt.setAttribute('class', 'good');
       }
-      resultTxt.textContent = scenarioOne[survivorArray[0].checkpointCounter][6];
+      resultTxt.textContent = currentScene[survivorArray[0].checkpointCounter][6];
       survivorArray[0].checkpointCounter += 1; //Result TXT
       resultCont.append(resultTxt);
       choices.removeEventListener('click', choiceHandler);
@@ -67,11 +74,16 @@ function renderSurv() {
     resultCont.append(continueBtn);
 
     // Continue button Event handler
+   
     function continueHandle(event) {
       continueBtn.textContent = '';
       choiceCard();
       popScen();
       renderHealth();
+      console.log(resultCont.childNodes);
+      resultCont.removeChild(resultCont.childNodes[btnReset]);
+      btnReset++;
+      console.log(btnReset);
       choices.addEventListener('click', choiceHandler);
     }
 
@@ -135,11 +147,11 @@ function popScen() {
     scene.alt = endScreens[0][1];
     sceneTxt.textContent = endScreens[0][2];
   } else { //Default Case
-    scene.src = scenarioOne[survivorArray[0].checkpointCounter][0];
-    scene.alt = scenarioOne[survivorArray[0].checkpointCounter][1];
+    scene.src = currentScene[survivorArray[0].checkpointCounter][0];
+    scene.alt = currentScene[survivorArray[0].checkpointCounter][1];
 
 
-    sceneTxt.textContent = scenarioOne[survivorArray[0].checkpointCounter][2];
+    sceneTxt.textContent = currentScene[survivorArray[0].checkpointCounter][2];
   }
 }
 
@@ -163,16 +175,16 @@ function choiceCard() {
   choiceTwoBack.alt = 'A card with red text on it,';
 
   if (rand === 4) {
-    choiceOne.src = scenarioOne[survivorArray[0].checkpointCounter][rand];
-    choiceTwo.src = scenarioOne[survivorArray[0].checkpointCounter][rand - 1];
+    choiceOne.src = currentScene[survivorArray[0].checkpointCounter][rand];
+    choiceTwo.src = currentScene[survivorArray[0].checkpointCounter][rand - 1];
 
     choiceOneBack.src = './img/GoodCard.png';
     choiceTwoBack.src = './img/BadCard.png';
     choiceOne.alt = 'goodChoice';
     choiceTwo.alt = 'badChoice';
   } else {
-    choiceOne.src = scenarioOne[survivorArray[0].checkpointCounter][rand];
-    choiceTwo.src = scenarioOne[survivorArray[0].checkpointCounter][rand + 1];
+    choiceOne.src = currentScene[survivorArray[0].checkpointCounter][rand];
+    choiceTwo.src = currentScene[survivorArray[0].checkpointCounter][rand + 1];
 
     choiceOneBack.src = './img/BadCard.png';
     choiceTwoBack.src = './img/GoodCard.png';
