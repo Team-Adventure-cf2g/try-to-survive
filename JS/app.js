@@ -1,14 +1,33 @@
 'use strict';
 
-
 // globals
 var survivorArray = [];
 var scenarioArray = [];
 var scenarioOne = [
-  ['./img/bear.jpg', 'A vicious Bear', 'A Wild Bear approaches', './img/runCard.png', './img/stayCard.png', 'something happens', 'something else happened'],
-  ['./img/cold.jpeg', 'A cold place', 'A biting cold overcomes you', './img/runCard.png', './img/stayCard.png', 'something happens', 'something else happened'],
-  ['./img/wilderness.jpg', 'Wilderness', 'Famine is you problem', './img/runCard.png', './img/stayCard.png', 'something happens', 'something else happened'],
-  ['./img/fire.jpg', 'a ragingfire', ' a raging wildfire surrounds you', './img/runCard.png', './img/stayCard.png', 'something happens', 'something else happened'],
+  ['./img/alone.jpeg', 'spooky picture',  //src, alt text
+    'You wake up alone, a fox is trying to swipe your supplies you must choose one', //Whats happening
+    './img/jacketcard.png','./img/flintCard.png', // Choices
+    'You quickly take the jacket and the fox runs away with the flint, as you curse the fox for stealing you notice a noise, you turn with a sense of alertness that escapes you in everyday life. You notice a ominous sillhouette approaching', //Choice jacket
+    'You quickly take the flint as the fox ripps the jackets to shreds, as the fox escapes you '],//Choice flint
+
+  ['./img/bear.jpg', 'A gosh darn bear',
+    'A Bear approaches, what will you do?',
+    './img/fightCard.png', './img/throwCard.png',
+    'You for some Reason throw your jacket at the bear.Perhaps you thought it was cold ... a stoke of luck falls upon you and the bear gets tangled in the jacket long enough for you to escape. Although, you are now jacketless',
+    'In your new jacket you feel so fly that you think you can take on a fully grown bear, The bear claws at your leg and then is overcome with a sense of pity for you and moves along with its patrol. -3'],
+
+  ['./img/hole.jpeg', 'a hole that can only inspire thoughts of an abyss',
+    'As you frantically run from the bear, you are lost in your adrenaline fueled haste, before you can react you find yourself falling into a pit.',
+    './img/climbCard.png', './img/digCard.png',
+    'Your adrenaline high is enough to get you through most of the climb you fall several times, towards the end of your ascent the goings on of the day catch up with you, exhaustion becomes you. -5',
+    'You pop to your feet, your survival instinct is activated. You manage to find a stick sturdy enough to dig with, you dig stairs out of the hole out of sheer will.'],
+
+  ['./img/cold.jpeg', 'an icy forest',
+    'You emerge from the hole and are overcome by a sense of disoreintation, it appears as if in the time it took you to dig yourself out of the hole the forest has become enguled in snow',
+    './img/fireCard.png', './img/moveCard.png',
+    'You attempt to start a fire. You encounter feelings of regret you let that fox get away with the flint. hyppthermia sets in',
+     'You decide it is best to keep moving and you continue onward to try and find your way to a road'],
+
   ['./img/wilderness2.jpg', 'another wilderness', 'you have struggled to find clean water', './img/runCard.png', './img/stayCard.png', 'something happens', 'something else happened'],
 
 ];
@@ -28,10 +47,10 @@ function Survivor(name) {
   this.healthCounter = 2;
   this.checkpointCounter = 0;
   this.score = 0;
+  this.item = '';
 
   survivorArray.push(this);
 }
-
 // Scenario constructor
 function Scenario(imgSrc, imgAlt) {
   this.imgSrc = imgSrc;
@@ -63,6 +82,7 @@ function handleUser(event) {
     var newSurvivor = new Survivor(event.target.userName.value);
     var serilizedSurv = JSON.stringify(survivorArray);
     localStorage.setItem('survivor', serilizedSurv);
+    console.log('check');
     window.open('adventure.html', self);
   } else if (radioValue === 'returningPlayer') {
     window.open('adventure.html', self);
@@ -71,138 +91,9 @@ function handleUser(event) {
 userForm.addEventListener('submit', handleUser);
 
 
-//Scenario Functions
-
-function renderSurv() {
-  var healthDis = document.getElementById('content-containter');
-  var survivor = localStorage.getItem('survivor');
-  survivorArray = JSON.parse(survivor);
-  console.log('check');
-  renderHealth();
-  popScen();
-  choiceCard();
-
-  var choices = document.getElementById('choiceCont');
-  // Handler for choice cards
-  function choiceHandler(event) {
-
-    var resultCont = document.getElementById('results');
-    if (event.target.alt === 'badChoice') {
-      var resultTxt = document.createElement('p');
-      resultTxt.textContent = scenarioOne[survivorArray[0].checkpointCounter][5];
-      resultCont.append(resultTxt);
-      survivorArray[0].healthCounter--;
-      choices.removeEventListener('click', choiceHandler);
-    } else if (event.target.alt === 'goodChoice') {
-      var resultTxt = document.createElement('p');
-      resultTxt.textContent = scenarioOne[survivorArray[0].checkpointCounter][6];
-      resultCont.append(resultTxt);
-      choices.removeEventListener('click', choiceHandler);
-    }
-
-    //End screen logic
-
-    // Adding a continue Button
-    var continueBtn = document.createElement('a');
-    continueBtn.textContent = 'Continue';
-    resultCont.append(continueBtn);
-
-    // Continue button Event handler
-    function continueHandle(event) {
-      survivorArray[0].checkpointCounter += 1;
-      continueBtn.textContent = '';
-      popScen();
-      renderHealth();
-      choices.addEventListener('click', choiceHandler);
-    }
-
-    continueBtn.addEventListener('click', continueHandle);
-  }
 
 
-  choices.addEventListener('click', choiceHandler);
 
-}
-
-function renderHealth() {
-  var ctx = document.getElementById('myChart');
-  var myChart = new Chart(ctx, {
-    type: 'horizontalBar',
-    data: {
-      labels: ['Health'],
-      datasets: [{
-        barThickness: 30,
-        label: 'Health Remaining',
-        data: [survivorArray[0].healthCounter],
-        backgroundColor: [
-          'red'
-        ],
-        borderColor: [
-          '#fff'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        xAxes: [{
-          ticks: {
-            beginAtZero: true
-          }
-        }]
-      }
-    }
-
-  });
-}
-
-//Scenario Population functions
-
-function popScen() {
-  var scene = document.getElementById('scenarioImg');
-  var sceneTxt = document.getElementById('sceneTxt');
-  if (survivorArray[0].healthCounter === 0) { //Death Case
-    scene.src = endScreens[1][0];
-    scene.alt = endScreens[1][1];
-    sceneTxt.textContent = endScreens[1][2];
-  } else if (survivorArray[0].checkpointCounter === 4) { //Win Case
-    scene.src = endScreens[0][0];
-    scene.alt = endScreens[0][1];
-    sceneTxt.textContent = endScreens[0][2];
-  } else { //Default Case
-    scene.src = scenarioOne[survivorArray[0].checkpointCounter][0];
-    scene.alt = scenarioOne[survivorArray[0].checkpointCounter][1];
-
-
-    sceneTxt.textContent = scenarioOne[survivorArray[0].checkpointCounter][2];
-  }
-}
-
-
-//Choice Card Function
-
-function choiceCard() {
-  var randCardOne = ((Math.floor(Math.random() * (4 - 2)) + 2) + 1);
-  if (randCardOne === 3) {
-    var randCardTwo = 4;
-  } else {
-    var randCardTwo = 3;
-  }
-  console.log(randCardTwo, randCardOne);
-  var choiceOne = document.getElementById('choiceOne');
-  var choiceTwo = document.getElementById('choiceTwo');
-
-  choiceOne.src = scenarioOne[survivorArray[0].checkpointCounter][randCardOne];
-  choiceTwo.src = scenarioOne[survivorArray[0].checkpointCounter][randCardTwo];
-
-  if (randCardOne === 3) { //Assigning alt text so cards can be switched
-    choiceOne.alt = 'goodChoice';
-    choiceTwo.alt = 'badChoice';
-  } else {
-    choiceOne.alt = 'badChoice';
-    choiceTwo.alt = 'goodChoice';
-  }
-}
 
 
 
