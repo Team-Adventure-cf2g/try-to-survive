@@ -22,9 +22,9 @@ function renderSurv() {
 
     //Assigning item to survivor
     itemChoice();
+    var resultTxt = document.createElement('p');
 
     if (event.target.alt === 'badChoice') {
-      var resultTxt = document.createElement('p');
       resultTxt.textContent = scenarioOne[survivorArray[0].checkpointCounter][5]; //Result txt
       resultCont.append(resultTxt);
       //For item choice
@@ -38,6 +38,7 @@ function renderSurv() {
 
       choices.removeEventListener('click', choiceHandler);
       survivorArray[0].checkpointCounter += 1;
+      console.log('jacket');
 
 
     } else if (event.target.alt === 'goodChoice') {
@@ -45,6 +46,7 @@ function renderSurv() {
         foxCard();
         resultTxt.setAttribute('class', 'neutral');
       } else {
+        console.log('flint');
         var resultTxt = document.createElement('p');
         resultTxt.setAttribute('class', 'good');
       }
