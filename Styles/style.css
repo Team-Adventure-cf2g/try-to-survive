@@ -31,7 +31,7 @@ text-shadow: 1px 1px darkslategray,
 }
 h2 {
   text-align:center;
-  font-size:5vh;
+  font-size:30px;
   color:darkred;
 }
 
@@ -75,17 +75,76 @@ img#scenarioImg{
 }
 
 div#choiceCont {
+  display:flex;
   margin-left:10px;
 }
+
+/* Card Flipping */
+.scene {
+  perspective:1000px;
+  width:230px;
+  height:400px;
+}
+.card {
+  position:relative;
+  cursor:pointer;
+  width:100%;
+  height:100%;
+  transform-style:preserve-3d;
+  transition: transform 1s;
+
+}
+.card.is-flipped {
+  transform: translateX(-8%) rotateY(-180deg);
+}
+ 
+.card__face {
+  position:absolute;
+  backface-visibility: hidden;
+}
+
+.card__face--back {
+  transform:rotateY(180deg);
+}
+
+/*  card two */
+
+.sceneTwo {
+  perspective:1000px;
+  width:300px;
+  height:400px;
+}
+.cardTwo {
+  position:relative;
+  cursor:pointer;
+  width:100%;
+  height:100%;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+.cardTwo.is-flipped {
+  transform:translateX(-30%) rotateY(-180deg);
+}
+
+.cardTwo__face {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.cardTwo__face--back {
+  transform:rotateY(180deg);
+}
+
+
+
+
+
+
 
 div#choiceCont img:nth-child(2){
 margin-left:10px
 
 }
-
-
-
-
 
 /*form*/
 fieldset {
@@ -128,8 +187,24 @@ footer {
 
 }
 
-/* chart */
+/* results */ 
 
+h3 {
+ font-size:20px;
+}
+
+#results p {
+  width:219px;
+  padding:10px
+}
+
+.good {
+  color:green;
+}
+
+.bad {color:red;}
+
+.neutral {color:gold;}
 
 
 

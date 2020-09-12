@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=, initial-scale=1.0">
@@ -7,31 +8,50 @@
   <link rel="stylesheet" href="Styles/style.css">
   <title>Adventure</title>
 </head>
-<body onload='renderSurv();'>
+
+<body>
   <main>
-    <header><nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul></nav>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </nav>
     </header>
-    <div id="conent-container">
-      <canvas id ="myChart" height="30px"></canvas>
+    <div id="conent-container ">
+      <canvas id="myChart" height="30px"></canvas>
       <div id="mainImgCont">
         <h2 id='sceneTxt'></h2>
         <img src="" alt="" id='scenarioImg'>
       </div>
-      <div id="choiceCont">
-
-        <img src="" alt="" id="choiceOne">
-        <img src="" alt="" id="choiceTwo">
+      <div id="choiceCont" >
+        <div class='scene scene--card'>
+        <div class="card">
+          <img src="" alt="" id="choiceOne" class='card__face card__face--front'>
+          <img src="" alt="" id="choiceOneBack" class="card__face card__face--back">
+        </div>
       </div>
-      <div id="results">
+      <div class='sceneTwo sceneTwo--cardTwo'>
+        <div class="cardTwo">
+          <img src="" alt="" id="choiceTwo" class="cardTwo__face cardTwo__face--front">
+          <img src="" alt="" id="choiceTwoBack" class='cardTwo__face cardTwo__face--back'>
+          </div>
+        </div>
+        <div id="results">
+          <h3>Adventure Log:</h3>
+        </div>
       </div>
     </div>
-    <footer><p> &copy CF2G</p></footer>
+    <footer>
+      <p> &copy CF2G</p>
+    </footer>
   </main>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+    integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg=="
+    crossorigin="anonymous"></script>
   <script src="JS/app.js"></script>
+  <script src='JS/adventure.js'></script>
 </body>
+
 </html>
