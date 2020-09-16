@@ -239,7 +239,7 @@ function oneflip(event) {
   card.classList.toggle('is-flipped');
 
   if (event.target.alt === ' Try again card') {
-    window.open('index.html', 'self');
+    window.open('index.html', '_self');
   }
 
   card.removeEventListener('click', oneflip);
@@ -249,7 +249,7 @@ function oneflip(event) {
 function twoFlip(event) {
   secondCard.classList.toggle('is-flipped');
   if (event.target.alt === 'About the dev team card') {
-    window.open('about.html', 'self');
+    window.open('about.html', '_self');
   }
   card.removeEventListener('click', oneflip);
   secondCard.removeEventListener('click', twoFlip);
