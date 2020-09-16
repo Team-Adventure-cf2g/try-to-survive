@@ -42,6 +42,7 @@ function renderSurv() {
       }
 
       choices.removeEventListener('click', choiceHandler);
+      survivorArray[0].score--;
       survivorArray[0].checkpointCounter += 1;
       console.log('jacket');
 
@@ -64,6 +65,7 @@ function renderSurv() {
       if (survivorArray[0].checkpointCounter === 2 && survivorArray[0].item === 'jacket') {
         currentScene = jacketFight;
       }
+      survivorArray[0].score++;
 
       survivorArray[0].checkpointCounter += 1; //Result TXT
       resultCont.append(resultTxt);
