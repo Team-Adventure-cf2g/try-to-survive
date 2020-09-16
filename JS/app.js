@@ -189,9 +189,9 @@ function handleUser(event) {
     var serilizedSurv = JSON.stringify(survivorArray);
     localStorage.setItem('survivor', serilizedSurv);
     console.log('check');
-    window.open('adventure.html', self);
+    window.open('adventure.html', '_self');
   } else if (radioValue === 'returningPlayer') {
-    window.open('adventure.html', self);
+    window.open('adventure.html', '_self');
   }
 }
 userForm.addEventListener('submit', handleUser);
