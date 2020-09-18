@@ -1,0 +1,344 @@
+
+/*nav*/
+
+ul {
+  
+  
+  padding: 10px;
+  background-color: darkslategray;
+
+
+}
+
+li {
+  display: inline-block;
+  padding: 1%;
+
+}
+
+/*heading*/
+
+h1 {
+ text-align: center;
+margin: auto;
+padding: 2%;
+font-family: fantasy;
+font-size: x-large;
+text-shadow: 1px 1px darkslategray,
+2px 2px darkturquoise,
+4px 4px grey;
+
+}
+h2 {
+  text-align:center;
+  font-size:33px;
+  color:darkred;
+  font-family: "Long Cang";
+  font-weight: bold;
+}
+
+
+
+a {
+  color:cyan;
+  font-weight:bold;
+  text-decoration:none;
+  font-family: "Long Cang";
+  font-size:30px;
+}
+
+a:hover {
+  color:darkred;
+  text-decoration:underline;
+  font-size:35px;
+  transition-duration: .4s;
+}
+
+nav ul li:last-child {
+ color:darkred;
+ float:right;
+ font-family: 'Long Cang';
+ font-weight: bolder;
+ font-size:35px;
+}
+
+
+.information p {
+  color:cyan;
+  font-size:22px;
+  font-family: 'Long Cang';
+  line-height: 20px;
+  text-shadow: 1px 1px black;
+  font-weight:bold;
+  letter-spacing: 3px;
+}
+/*body*/
+main{
+  width:900px;
+  margin:auto;
+  background-color:rgba(47, 79,79, .6);
+}
+
+.information {
+  display: inline-block;
+  border-style: dashed;
+  border-width: thin;
+}
+
+body {
+  background-image: url(../img/wilderness2.jpeg);
+  background-position: center;
+  background-color: rgb(30, 155, 30);
+  animation: fadeIn ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  0%{
+    opacity:0;
+  }
+
+  100% {
+    opacity:1;
+  }
+}
+
+img#scenarioImg{
+  width:870px;
+  padding:10px;
+}
+
+div#choiceCont {
+  display:flex;
+  margin-left:10px;
+}
+
+/* Card Flipping */
+.scene {
+  perspective:1000px;
+  width:230px;
+  height:400px;
+}
+.card {
+  position:relative;
+  cursor:pointer;
+  width:100%;
+  height:100%;
+  transform-style:preserve-3d;
+  transition: transform 1s;
+
+}
+.card.is-flipped {
+  transform: translateX(-8%) rotateY(-180deg);
+}
+ 
+.card__face {
+  position:absolute;
+  backface-visibility: hidden;
+}
+
+.card__face--back {
+  transform:rotateY(180deg);
+}
+
+/*  card two */
+
+.sceneTwo {
+  perspective:1000px;
+  width:300px;
+  height:400px;
+}
+.cardTwo {
+  position:relative;
+  cursor:pointer;
+  width:100%;
+  height:100%;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+.cardTwo.is-flipped {
+  transform:translateX(-30%) rotateY(-180deg);
+}
+
+.cardTwo__face {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.cardTwo__face--back {
+  transform:rotateY(180deg);
+}
+
+
+
+
+
+
+
+div#choiceCont img:nth-child(2){
+margin-left:10px
+
+}
+
+/*form*/
+fieldset {
+text-align:center;
+margin: 0 auto;
+background:rgba(0,0,0,0.8);
+color:cyan;
+box-shadow: 0 0 10px;
+max-width:150px;
+padding:30px;
+
+}
+
+input[type="text"] {
+  color:darkslategray;
+  text-transform: uppercase;
+  margin-bottom:10px;
+}
+
+button {
+  margin-top:25px;
+  background-color:cyan;
+  height:35px;
+  width:45%;
+  border-radius:10%;
+  color:darkslategray;
+  font-weight: bold;
+  transition-duration: .5s;
+}
+/*footer*/
+button:hover {
+  background-color:rgba(0,0,0,0.8);
+  height:40px;
+  width:50%;
+  color:cyan;
+  transition-duration: .5s;
+}
+footer {
+  font-family: fantasy;
+
+}
+
+/* results */ 
+
+#results h3 {
+ font-size:20px;
+}
+
+#results p {
+  width:219px;
+  padding:10px;
+  font-family: "Shadows Into Light";
+  background-image: url("../../img/journal.jpg");
+  font-size: 25px;
+  text-overflow: clip;
+  line-height: 25px;
+  margin-bottom: 20px;
+  box-shadow: inset 0 -3em 3em rgba(47, 79,79, .1), 
+  0 0 0 2px rgb(47, 79,79, .1), 
+  0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+
+div #results {
+  height: 400px;
+  overflow: scroll;
+  
+}
+
+.good {
+  color:green;
+}
+
+.bad {color:red;}
+
+.neutral {color: black;}
+
+a #hideBtn {
+ visibility: hidden;
+ background-color: transparent;
+}
+#results h3 {
+  font-family: 'Long Cang';
+  font-weight: bold;
+  font-size:25px;
+  padding-bottom:15px;
+  color:darkred;
+}
+
+#results a {
+  background-color:cyan;
+  height:35px;
+  width:45%;
+  border-radius:10%;
+  color:darkslategray;
+  font-weight: bold;
+  transition-duration: .5s;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 15px;
+}
+
+#results a:hover {
+  cursor: pointer;
+  background-color:rgba(0,0,0,0.8);
+  height:40px;
+  width:50%;
+  color:cyan;
+  transition-duration: .5s;
+}
+
+
+
+
+/* //About Me Styling// */
+
+.bioImage {
+  width: 300px;
+  height: 300px;
+  float: left;
+  margin-right: 15px;
+}
+
+.bioText {
+  width: 570px;
+  padding: 15px;
+  margin-left: 15px;
+}
+
+.bio-container {
+  display: inline-block;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.bio-name {
+  font-family: "Long Cang";
+}
+
+/* Scroll Bar Styling */
+
+::-webkit-scrollbar {
+  width:10px;
+}
+
+/* track */
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* handle */
+
+::-webkit-scrollbar-thumb {
+  background: darkslategray;
+  box-shadow: inset 0 0 5px gray;
+  border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: red;
+  transition:350ms;
+}
